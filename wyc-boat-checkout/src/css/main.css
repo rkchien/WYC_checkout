@@ -1,0 +1,176 @@
+.main-container {
+  background: #ffffff;
+  padding-left: 10%;
+  padding-right: 10%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top:0%;
+  padding-top:0%;
+}
+
+.user-info {
+  margin-bottom: 0%;
+  margin-left: 5%;
+  margin-top: 3%;
+  padding: 0%;
+}
+
+.view-switcher {
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 15px;
+  margin: 5px;
+  background-color: #007BFF;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.checkout-card {
+  background: #ffffff;
+  margin: 1em;
+  padding: 1em;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1 1 250px;
+  max-width: 350px;
+}
+
+.checked-out-card {
+  background: #e0f7fa;
+  border: 1px solid #00acc1;
+}
+
+.checked-in-card {
+  background: #e8f5e9;
+  border: 1px solid #66bb6a;
+}
+
+.checkout-card > * {
+  margin: 0.25em 0;
+}
+
+.checkout-card form input {
+  margin: auto;
+  max-width: 100px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.checkout-table {
+  width: 100%;
+  margin: 5px 0;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.checked-out-table {
+  background: #e0f7fa;
+  border: 1px solid #00acc1;
+}
+
+.checked-in-table {
+  background: #e8f5e9;
+  border: 1px solid #66bb6a;
+}
+
+.checkout-table th, .checkout-table td {
+  border: 1px solid #ddd;
+  text-align: left;
+  padding: 12px;
+}
+
+.checkout-table th {
+  background: #f8f9fa;
+  font-weight: bold;
+}
+
+.checkout-table td {
+  background: #fff;
+}
+
+table.crewTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table.crewTable td, table.crewTable th {
+  border: 1px solid #ddd;
+  text-align: left;
+  padding: 12px;
+}
+
+/* Highlight for sign-in reminder */
+.sign-in-reminder {
+  background-color: #ffffff;
+  border: 1px solid #ffdd57;
+  color: #8a6d3b;
+  padding-left: 10%;
+  padding-right: 10%;
+  margin: 5%;
+  font-size: 1.2em;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cardMemberName {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.cardBoatName {
+    font-size: 1.10rem;
+    font-weight: 600;
+}
+
+.cardDestination {
+    font-size: 1rem;
+    font-weight: 100;
+    line-height: 1;
+    margin-top:1rem;
+}
+
+.cardTime {
+    font-size: 1rem;
+    font-weight: 100;
+    line-height: 1.1;
+}
+
+.cardRating {
+    font-size: 1rem;
+    font-weight: 100;
+    line-height: 1;
+}
+
+.cardStatus {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1;
+    margin-top:1rem;
+    color: orange;
+}
+
+.cardEstimatedTimeReturn {
+    font-size: 1rem;
+    font-weight: 100;
+    line-height: 1;
+}

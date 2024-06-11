@@ -1,0 +1,105 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color:#E5E5E5;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+  
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  
+  h1{
+    color: #2e0070;
+  }
+
+/* Base grid is 1 => 2 => 4 columns dependent on size */
+/* Grid Items have "card-wide"  "card-med" and "card-small" 
+   selctors. Wide cards take up 1=>2=>4 columns and Medium 
+   cards take up 1=>2=>2 columns and small cards take up 
+   1=>1=>2. Not putting a selector on a item will make it 
+   always take up 1 column*/
+
+/* There is another option for a grid with max columns of 3 */
+/* End3 cards take up 1=>2=>1 columns 
+   (this is so that on table views they are centered)
+   Wide3 cards take up 1=>2=>3 columns*/
+
+/* Base grid Stylings, there is more in the media queries*/
+.grid {
+    display: grid;
+    gap: 2rem;
+    max-width: 90%;
+    margin: 0 auto 2rem;
+    grid-template-columns: repeat(1, minmax(240px, 1fr));
+  }
+  
+  
+  html {
+    font-size: 12px;
+  }
+  /* Stylings for tablet */
+  @media only screen and (min-width: 600px) {
+    html {
+      font-size: 14px;
+    }
+    .grid{
+      grid-template-columns: repeat(2, minmax(240px, 1fr));
+    }
+    .card-wide {
+      grid-column: span 2 / auto;
+    }
+    .card-med {
+      grid-column: span 2 / auto;
+    }
+    .card-wide3{
+      grid-column: span 2 / auto;
+    }
+    .card-end3{
+      max-width: 48%;
+      margin: 0 auto;
+      grid-column: span 2 / auto;
+    }
+  }
+  /* Stylings for desktop */
+  @media only screen and (min-width: 1024px) {
+    html {
+      font-size: 16px;
+    }
+    .grid{
+      grid-template-columns: repeat(4, minmax(200px, 1fr));
+    }
+     .card-wide {
+      grid-column: span 4 / auto;
+    }
+    .card-small{
+      grid-column: span 2/ auto
+    }
+    .grid3{
+      grid-template-columns: repeat(3, minmax(200px, 1fr));
+    }
+    .card-end3{
+      max-width: 100%;
+      margin: 0;
+      grid-column: span 1 / auto;
+    }
+    .card-wide3 {
+      grid-column: span 3 / auto;
+    }
+  }
+  
+  .card-pic{
+    width: 100%;
+    margin: 0 auto;
+    min-height: 15rem;
+  }

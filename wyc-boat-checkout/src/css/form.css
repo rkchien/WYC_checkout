@@ -1,0 +1,45 @@
+#main-form {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.formEntry {
+    margin: 1em;
+    padding-top: 0;
+}
+.formEntry label {
+    margin: 1em;
+    font-weight: 600;
+}
+.formEntry input {
+    margin: 1em;
+    padding: 5px;
+}
+.formEntry > input[type=radio] {
+    display: none;
+}
+.formEntry select {
+    margin: 1em 1.5em;
+    padding: 5px;
+}
+.formEntry#submit {
+    flex-basis: 100%;
+}
+.formEntry#submit input {
+    max-width: 12em;
+}
+#radio-buttons input[type=radio] + label {
+    border: 1px solid black;
+    border-radius: 3px;
+    transition: all 200ms ease-out;
+    padding: 5px;
+}
+#radio-buttons input[type=radio]:checked + label {
+    box-shadow: 0 0 6px rgba(35, 173, 278, 1);
+    background: #bbdeff;
+}
+#radio-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: flex-start;
+}
