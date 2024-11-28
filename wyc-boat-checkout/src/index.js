@@ -17,6 +17,7 @@ root.render(
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/checkout" element={<CheckoutForm />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   </React.StrictMode>

@@ -33,6 +33,79 @@ const pool = mysql.createPool({
   queueLimit: 0
 });
 
+// Login route
+app.post('/auth/login', async (req, res, next) => {
+  try {
+    const entered_wycnumber = req.body.wycnumber;
+    const entered_password = req.body.password;
+
+    console.log('Entered credentials:', entered_wycnumber, entered_password);
+
+    // Step 1: Retrieve WYCNumber and hashed password from the database
+    const query1 = `
+      SELECT WYCNumber, password 
+      FROM WYCDatabase 
+      WHERE WYCNumber = ?
+    `;
+
+    const [rows1] = await pool.query(query1, [entered_wycnumber]);
+
+    if (rows1.length === 0) {
+      console.log('No matching WYCNumber found.');
+      return res.status(401).json({ message: 'Authentication failed: invalid username' }); // Unauthorized
+    }
+
+    const { WYCNumber, password: stored_hashed_password } = rows1[0];
+    console.log('WYCNumber from DB:', WYCNumber);
+    console.log('Stored hashed password:', stored_hashed_password);
+
+    // Step 2: Hash the entered password to compare with the stored hash
+    const query2 = `
+      SELECT CONCAT('*', UPPER(SHA1(UNHEX(SHA1(?))))) AS hashed_password
+    `;
+
+    const [rows2] = await pool.query(query2, [entered_password]);
+
+    if (rows2.length === 0 || !rows2[0].hashed_password) {
+      console.log('Failed to hash entered password.');
+      return res.status(500).json({ message: 'Password hashing failed' });
+    }
+
+    const entered_hashedpassword = rows2[0].hashed_password;
+    console.log('Entered hashed password:', entered_hashedpassword);
+
+    // Step 3: Compare the hashed passwords
+    if (stored_hashed_password !== entered_hashedpassword) {
+      console.log('Password mismatch.');
+      return res.status(401).json({ message: 'Authentication failed: wrong password' }); // Unauthorized
+    }
+
+    // Step 4: Fetch full user details after successful password verification
+    const query3 = `
+      SELECT WYCNumber, First, Last, Phone1, Email, Category, image_name, password
+      FROM WYCDatabase
+      WHERE WYCNumber = ?
+    `;
+
+    const [rows3] = await pool.query(query3, [entered_wycnumber]);
+
+    if (rows3.length === 0) {
+      console.log('No user details found for WYCNumber.');
+      return res.status(404).json({ message: 'User details not found' });
+    }
+
+    const user = rows3[0];
+    console.log('Logged in as:', user.First + " " + user.Last);
+
+    // Step 5: Send successful response with user details
+    return res.status(200).json({ message: 'Login successful', user });
+
+  } catch (error) {
+    console.error('Error during login:', error);
+    return res.status(500).json({ message: 'An unexpected error occurred during login' });
+  }
+});
+
 app.get('/api/boats', async (req, res) => {
   try {
     const [rows] = await pool.query('SELECT * FROM boat_types');

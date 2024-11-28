@@ -3,8 +3,8 @@ import axios from 'axios';
 import '../css/main.css'
 
 function Main() {
-  const [user, setUser] = useState({ first: 'Renee', last: 'Chien', WYCNumber: 23628 });
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [user, setUser] = useState({ first: '', last: '', WYCNumber: 0 });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [checkedOutBoats, setCheckedOutBoats] = useState([]);
   const [checkedInBoats, setCheckedInBoats] = useState([]);
   const [checkedInView, setCheckedInView] = useState('table'); // 'card' or 'table'

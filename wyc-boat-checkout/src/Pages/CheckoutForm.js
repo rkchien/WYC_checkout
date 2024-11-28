@@ -6,7 +6,7 @@ import '../css/form.css'
 const CheckoutForm = () => {
   const [boats, setBoats] = useState([]);
   const [ratings, setRatings] = useState([]);
-  const [user, setUser] = useState({ wycnumber:13810}); // Assume user is logged in and has a session
+  const [user, setUser] = useState();
 
   useEffect(() => {
     axios.get('http://localhost:3000/api/boats')
@@ -19,7 +19,7 @@ const CheckoutForm = () => {
   }, [user]);
 
   const [formData, setFormData] = useState({
-    WYCNumber: 23628,
+    WYCNumber: 0,
     Boat: '',
     RelevantRating: 1,
     ChiefId: '',
