@@ -1,25 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../AuthContext';
 import axios from 'axios';
 import '../css/main.css'
 
 function Main() {
-  const [user, setUser] = useState({ first: '', last: '', WYCNumber: 0 });
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user, isLoggedIn } = useContext(AuthContext);
+  
   const [checkedOutBoats, setCheckedOutBoats] = useState([]);
   const [checkedInBoats, setCheckedInBoats] = useState([]);
   const [checkedInView, setCheckedInView] = useState('table'); // 'card' or 'table'
   const [checkedOutView, setCheckedOutView] = useState('card'); // 'card' or 'table'
 
   useEffect(() => {
-    // Fetch user info
-    axios.get('http://localhost:3000/api/user')
-      .then(response => {
-        if (response.data.loggedIn) {
-          setUser(response.data.user);
-          setIsLoggedIn(true);
-        }
-      });
-
     // Fetch checked-out boats
     axios.get('http://localhost:3000/api/checkouts?status=out')
       .then(response => {
@@ -57,7 +49,7 @@ function Main() {
         {isLoggedIn ? (
           <>
             <div className="user-info">
-              <p>Hello {user.first} {user.last}!</p>
+              <p>Hello {user.First} {user.Last}!</p>
               <a href="/checkout">Check out a boat!</a><br />
               <a href="/logout">Logout</a><br />
             </div>
@@ -169,7 +161,7 @@ const Card = ({ data, user }) => {
         </>
       )}
   
-      {data.Status === "Out" && data.WYCNumber === user.WYCNumber && (
+      {data.Status === "Out" && user && data.WYCNumber === user.WYCNumber && (
         <>
         <div className="cardCheckIN"><button onClick={() => handleCheckIn(data._index)}>Check In</button></div>
         </>
