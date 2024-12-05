@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../AuthContext';
-import axios from 'axios';
+import api from '../api.js';
 
 import '../css/form.css'
 
@@ -10,11 +10,11 @@ const CheckoutForm = () => {
   const { user, isLoggedIn } = useContext(AuthContext);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/boats')
+    api.get('/api/boats')
       .then(response => setBoats(response.data))
       .catch(error => console.error('Error fetching boats:', error));
 
-    axios.get(`http://localhost:3000/api/ratings?wycnumber=${user.WYCNumber}`)
+    api.get(`/ratings?wycnumber=${user.WYCNumber}`)
       .then(response => setRatings(response.data))
       .catch(error => console.error('Error fetching ratings:', error));
     
@@ -65,7 +65,7 @@ const CheckoutForm = () => {
   const handleSubmit = () => {
     console.log('Submitting form:', formData);
     
-    axios.post(`http://localhost:3000/api/submit-form`, formData)
+    api.post(`/api/submit-form`, formData)
       .then(response => {
         console.log('Response:', response.data);
       })

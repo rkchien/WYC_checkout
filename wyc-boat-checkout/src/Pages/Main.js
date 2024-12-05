@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../AuthContext';
-import axios from 'axios';
+import api from '../api';
 import '../css/main.css'
 
 function Main() {
@@ -13,13 +13,13 @@ function Main() {
 
   useEffect(() => {
     // Fetch checked-out boats
-    axios.get('http://localhost:3000/api/checkouts?status=out')
+    api.get('/checkouts?status=out')
       .then(response => {
         setCheckedOutBoats(response.data);
       });
 
     // Fetch checked-in boats
-    axios.get('http://localhost:3000/api/checkouts?status=in')
+    api.get('/checkouts?status=in')
       .then(response => {
         setCheckedInBoats(response.data);
       });
@@ -130,7 +130,7 @@ const Table = ({data, status}) => {
 };
 
 const handleCheckIn = (index) => {
-  axios.post(`http://localhost:3000/api/check-in`, {index})
+  api.post(`/api/check-in`, {index})
     .then(response => {
       console.log('Response:', response.data);
     })
